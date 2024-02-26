@@ -3,7 +3,7 @@ $db = new PDO('mysql:host=db;dbname=mcflurryCollection', 'root', 'password');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-$query = $db->prepare('SELECT * FROM `mcflurrys`;');
+$query = $db->prepare('SELECT `date`, `rating`, `review`, `image`, `location` FROM `mcflurrys`;');
 $query->execute();
 $result = $query->fetchAll();
 
