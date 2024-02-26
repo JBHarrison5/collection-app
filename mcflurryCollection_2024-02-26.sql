@@ -6,8 +6,8 @@
 # https://github.com/Sequel-Ace/Sequel-Ace
 #
 # Host: 127.0.0.1 (MySQL 11.2.2-MariaDB-1:11.2.2+maria~ubu2204)
-# Database: ticketCollection
-# Generation Time: 2024-02-26 10:50:54 +0000
+# Database: mcflurryCollection
+# Generation Time: 2024-02-26 11:42:55 +0000
 # ************************************************************
 
 
@@ -20,20 +20,19 @@ SET NAMES utf8mb4;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table tickets
+# Dump of table mcflurrys
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `tickets`;
+DROP TABLE IF EXISTS `mcflurrys`;
 
-CREATE TABLE `tickets` (
+CREATE TABLE `mcflurrys` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
-  `sport` varchar(255) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
   `rating` int(11) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `review` text DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `matchReport` varchar(255) DEFAULT NULL,
+  `flavour` varchar(255) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
