@@ -1,8 +1,49 @@
+body {
+    background-color: #DA291C;
+}
+
 header {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    font-family: Helvetica, sans-serif;
+    color: #FFC72C;
 }
 
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    align-items: center;
+}
+
+.mcflurry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: #FFC72C solid 2px;
+    padding: 4%;
+    width: 60%;
+    text-align: center;
+    margin-bottom: 5%;
+    color: #ffffff;
+    font-family: "Gill Sans", sans-serif;
+}
+
+h4 {
+    font-size: 12pt;
+    font-weight: normal;
+    margin-top: 0;
+}
+
+.stars {
+    color: #FFC72C;
+}
 .logo {
     width: 100px;
     height: 100px;
