@@ -1,0 +1,15 @@
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.mcflurry img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
