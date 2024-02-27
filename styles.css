@@ -14,6 +14,10 @@ nav {
     justify-content: center;
 }
 
+.orderSelector {
+    display: flex;
+}
+
 nav a {
     border: #FFC72C solid 2px;
     text-decoration: none;

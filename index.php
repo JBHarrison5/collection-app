@@ -2,11 +2,24 @@
 //extracting info from database
 
 require_once 'functions.php';
-$db = new PDO('mysql:host=db;dbname=mcflurryCollection', 'root', 'password');
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+databaseSetUp();
 
-$query = $db->prepare('SELECT `date`, `rating`, `review`, `image`, `location`, `flavour`, `id` FROM `mcflurrys`;');
+//check if post is set and is one of the potential categories. Not been messed with
+//Convert to lower case and add to query with concatenation
+//otherwise select as normal
+if (isset($_POST['sort']) && ($_POST['sort'] === 'DATE' || $_POST['sort'] === 'RATING' || $_POST['sort'] === 'COUNTRY')) {
+    $sorter = strtolower($_POST['sort']);
+    // concatenating the
+    $query = $db->prepare("SELECT `id`, `date`, `rating`, `review`, `image`, `flavour`, `location` 
+                            FROM `mcflurrys`
+                            ORDER BY `" . $sorter . "`;");
+    $query->execute();
+}
+else {
+    $query = $db->prepare('SELECT `id`, `date`, `rating`, `review`, `image`, `flavour`, `location` 
+                            FROM `mcflurrys`;');
+    $query->execute();
+}
 $query->execute();
 $result = $query->fetchAll();
 ?>
@@ -26,11 +39,18 @@ $result = $query->fetchAll();
     <h1>McFlyWithMe</h1>
 </header>
 <nav class="index">
-    <select name="sort" id="sort">
-        <option value="date">SORT BY DATE</option>
-        <option value="rating">SORT BY RATING</option>
-        <option value="country">SORT BY COUNTRY</option>
-    </select>
+    <div class="orderSelector">
+        <h4>ORDER BY:     </h4>
+        <form method="post" action="index.php">
+            <input type="submit" name="sort" value="DATE">
+        </form>
+        <form method="post" action="index.php">
+            <input type="submit" name="sort" value="RATING">
+        </form>
+        <form method="post" action="index.php">
+            <input type="submit" name="sort" value="COUNTRY">
+        </form>
+    </div>
     <form>
         <input type="text" placeholder="SEARCH...">
         <input type="submit" value="SEARCH">
