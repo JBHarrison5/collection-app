@@ -1,5 +1,7 @@
 <?php
 //extracting info from database
+
+require_once 'functions.php';
 $db = new PDO('mysql:host=db;dbname=mcflurryCollection', 'root', 'password');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -29,7 +31,7 @@ $result = $query->fetchAll();
         <option value="rating">SORT BY RATING</option>
         <option value="country">SORT BY COUNTRY</option>
     </select>
-    <form method="get">
+    <form>
         <input type="text" placeholder="SEARCH...">
         <input type="submit" value="SEARCH">
     </form>
@@ -43,21 +45,7 @@ $result = $query->fetchAll();
             echo '</a>';
             echo '<h2>' . $item['flavour'] . '</h2>';
             echo '<h4>' . $item['location'] . ' on ' . $item['date'] . '</h4>';
-            echo '<div class="stars">';
-                $counter = $item['rating'];
-                while ($counter > 0) {
-                    if ($counter >= 1) {
-                        echo '<i class="fa-solid fa-star"></i>';
-                    }
-                    else {
-                        echo '<i class="fa-regular fa-star-half-stroke"></i>';
-                    }
-                    $counter -= 1;
-                }
-                for ($i=0; $i < floor(5-$item['rating']); $i++) {
-                    echo '<i class="fa-regular fa-star"></i>';
-                }
-            echo '</div>';
+            displayStars($item['rating']);
         echo '</div>';
     }
     ?>

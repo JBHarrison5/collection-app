@@ -1,4 +1,6 @@
 <?php
+
+require_once 'functions.php';
 $db = new PDO('mysql:host=db;dbname=mcflurryCollection', 'root', 'password');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -33,23 +35,9 @@ $information = $query->fetch();
         echo '<img src="images/' . $information['image'] . '">';
         echo '<h2>' . $information['flavour'] . '</h2>';
         echo '<h4>' . $information['location'] . ' on ' . $information['date'] . '</h4>';
-        echo '<div class="stars">';
-            $counter = $information['rating'];
-            while ($counter > 0) {
-                if ($counter >= 1) {
-                    echo '<i class="fa-solid fa-star"></i>';
-                }
-                else {
-                    echo '<i class="fa-regular fa-star-half-stroke"></i>';
-                }
-                $counter -= 1;
-            }
-            for ($i=0; $i < floor(5-$information['rating']); $i++) {
-                echo '<i class="fa-regular fa-star"></i>';
-            }
-        echo '</div>';
+        displayStars($information['rating']);
         echo '<p>' . $information['review'] . '</p>';
-        echo '</div>';
+    echo '</div>';
     ?>
 </main>
 </body>
