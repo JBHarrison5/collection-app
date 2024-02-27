@@ -23,7 +23,7 @@ $result = $query->fetchAll();
     <a href="index.php" class="logo"><img class="logo" src="images/mcflurryIcon.png" alt="logo"></a>
     <h1>McFlyWithMe</h1>
 </header>
-<nav>
+<nav class="index">
     <select name="sort" id="sort">
         <option value="date">SORT BY DATE</option>
         <option value="rating">SORT BY RATING</option>
@@ -61,6 +61,10 @@ $result = $query->fetchAll();
         echo '</div>';
     }
     ?>
+
 </main>
+<footer>
+    <button>NEXT PAGE >></button>
+</footer>
 </body>
 </html>
