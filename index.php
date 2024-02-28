@@ -6,8 +6,8 @@ databaseSetUp();
 //check if post is set and is one of the potential categories. Not been messed with
 //Convert to lower case and add to query with concatenation
 //otherwise select as normal
-if (isset($_POST['sort']) && ($_POST['sort'] === 'DATE' || $_POST['sort'] === 'RATING' || $_POST['sort'] === 'COUNTRY')) {
-    $sorter = strtolower($_POST['sort']);
+if (isset($_POST['sort']) && ($_POST['sort'] === 'date' || $_POST['sort'] === 'rating' || $_POST['sort'] === 'country')) {
+    $sorter = $_POST['sort'];
     // concatenating the
     $query = $db->prepare("SELECT `id`, `date`, `rating`, `review`, `image`, `flavour`, `location` 
                             FROM `mcflurrys`
@@ -49,15 +49,13 @@ $result = $query->fetchAll();
 </header>
 <nav class="index">
     <div class="orderSelector">
-        <h4>ORDER BY:     </h4>
-        <form method="post" action="index.php">
-            <input type="submit" name="sort" value="DATE">
-        </form>
-        <form method="post" action="index.php">
-            <input type="submit" name="sort" value="RATING">
-        </form>
-        <form method="post" action="index.php">
-            <input type="submit" name="sort" value="COUNTRY">
+        <form action="index.php" method="POST">
+            <select name="sort" id="sort" onchange="this.form.submit();">
+                <option value="" disabled selected hidden>SORT BY</option>
+                <option value="date">DATE</option>
+                <option value="rating">RATING</option>
+                <option value="country">COUNTRY</option>
+            </select>
         </form>
     </div>
     <form action="index.php" method="GET">
@@ -73,8 +71,6 @@ $result = $query->fetchAll();
         echo "<h3>No Results Found</h3>";
     }
     else {
-        //can probably refactor this. Maybe make a function to assign all nulls to unknown
-        //in the functions php file
         foreach ($result as $item) {
             assignNulls($item);
             echo '<div class="mcflurry">';
