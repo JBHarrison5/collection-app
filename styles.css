@@ -1,0 +1,115 @@
+body {
+    background-color: #DA291C;
+}
+
+nav {
+    display: flex;
+}
+
+.index {
+    justify-content: space-between;
+}
+
+.information {
+    justify-content: center;
+}
+.mcflurry.information img {
+    width: 250px;
+    height: 250px;
+}
+
+h3 {
+    color: #FFC72C;
+}
+.orderSelector {
+    display: flex;
+}
+
+.mcflurry img {
+    border: #FFC72C solid 3px;
+}
+
+nav a {
+    border: #FFC72C solid 2px;
+    text-decoration: none;
+    background-color: #FFC72C;
+    color: #DA291C;
+    padding: 5px;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Helvetica, sans-serif;
+    color: #FFC72C;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    align-items: center;
+}
+
+.mcflurry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: #FFC72C solid 2px;
+    padding: 4%;
+    width: 60%;
+    text-align: center;
+    margin-bottom: 5%;
+    color: #ffffff;
+    font-family: "Gill Sans", sans-serif;
+}
+
+h4 {
+    font-size: 12pt;
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 5%;
+}
+
+.stars {
+    color: #FFC72C;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.mcflurry img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 700px) {
+    main {
+        margin-top: 2%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex-basis: 100%;
+        justify-content: space-evenly;
+    }
+
+    .mcflurry {
+        width: 200px;
+        height: 300px;
+    }
+
+    .mcflurry.information {
+        margin-top: 5%;
+        width: 400px;
+        height: 500px;
+    }
+
+}
