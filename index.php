@@ -2,7 +2,13 @@
 //extracting info from database
 require_once 'functions.php';
 databaseSetUp();
-
+session_start();
+if (isset($_GET['nextPage'])) {
+    $_SESSION['pageNum'] += 1;
+}
+else {
+    $_SESSION['pageNum'] = 1;
+}
 //check if post is set and is one of the potential categories. Not been messed with
 //Convert to lower case and add to query with concatenation
 //otherwise select as normal
@@ -71,7 +77,12 @@ $result = $query->fetchAll();
         echo "<h3>No Results Found</h3>";
     }
     else {
-        foreach ($result as $item) {
+        $pageNumber = $_SESSION['pageNum'];
+        for ($i = ($pageNumber - 1) * 10; $i < $pageNumber * 10; $i++) {
+            if ($i > count($result) - 1) {
+                break;
+            }
+            $item = $result[$i];
             assignNulls($item);
             echo '<div class="mcflurry">';
             echo '<a href="information.php?id=' . $item['id'] . '">';
@@ -81,8 +92,7 @@ $result = $query->fetchAll();
             echo '<h4>' . $item['location'] . ' on ' . $item['date'] . '</h4>';
             if ($item['rating'] === 'Unknown Rating') {
                 echo '<h3>NO RATING</h3>';
-            }
-            else {
+            } else {
                 displayStars($item['rating']);
             }
             echo '</div>';
@@ -92,7 +102,12 @@ $result = $query->fetchAll();
 
 </main>
 <footer>
-    <button>NEXT PAGE >></button>
+    <?PHP
+    echo '<button>PAGE ' . $_SESSION['pageNum'] . '</button>'
+    ?>
+    <form action="index.php">
+        <input type="submit" name="nextPage" value="NEXT PAGE >>">
+    </form>
 </footer>
 </body>
 </html>

@@ -25,7 +25,7 @@ h3 {
     display: flex;
 }
 
-img {
+.mcflurry img {
     border: #FFC72C solid 3px;
 }
 
@@ -88,7 +88,8 @@ h4 {
 }
 
 footer {
-    display: none;
+    display: flex;
+    justify-content: space-between;
 }
 
 @media screen and (min-width: 700px) {
@@ -103,11 +104,6 @@ footer {
     .mcflurry {
         width: 200px;
         height: 300px;
-    }
-
-    footer {
-        display: flex;
-        justify-content: flex-end;
     }
 
     .mcflurry.information {
