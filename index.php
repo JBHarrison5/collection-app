@@ -3,16 +3,6 @@
 require_once 'functions.php';
 databaseSetUp();
 
-if (isset($_GET['search'])) {
-    $query = $db->prepare("SELECT `id`, `date`, `rating`, `review`, `image`, `flavour`, `location`
-                            FROM `mcflurrys`
-                            WHERE `date` LIKE CONCAT('%', :search, '%')
-                            OR `review` LIKE CONCAT('%', :seach, '%')
-                            OR `flavour` LIKE CONCAT('%', :search, '%')
-                            OR `location` LIKE CONCAT('%', :search, '%')
-                            OR `country` LIKE CONCAT('%', :search, '%');");
-    $query->bindParam(':search', $_GET['search']);
-}
 //check if post is set and is one of the potential categories. Not been messed with
 //Convert to lower case and add to query with concatenation
 //otherwise select as normal
@@ -86,27 +76,14 @@ $result = $query->fetchAll();
         //can probably refactor this. Maybe make a function to assign all nulls to unknown
         //in the functions php file
         foreach ($result as $item) {
+            assignNulls($item);
             echo '<div class="mcflurry">';
             echo '<a href="information.php?id=' . $item['id'] . '">';
-            if ($item['image']) {
-                echo '<img src="images/' . $item['image'] . '">';
-            }
-            else {
-                echo '<img src="images/noImage.jpg">';
-            }
+            echo '<img src="images/' . $item['image'] . '.jpg">';
             echo '</a>';
-            if (!$item['flavour']) {
-                $item['flavour'] = 'Unknown';
-            }
             echo '<h2>' . $item['flavour'] . '</h2>';
-            if (!$item['date']) {
-                $item['date'] = 'unknown';
-            }
-            if (!$item['location']) {
-                $item['location'] = 'unknown';
-            }
             echo '<h4>' . $item['location'] . ' on ' . $item['date'] . '</h4>';
-            if (!$item['rating']) {
+            if ($item['rating'] === 'Unknown Rating') {
                 echo '<h3>NO RATING</h3>';
             }
             else {

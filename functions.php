@@ -25,3 +25,25 @@ function databaseSetUp() {
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 }
 
+function assignNulls(&$item)
+{
+    foreach ($item as $k => $v) {
+        if (!$item[$k]) {
+            $item[$k] = "Unknown " . ucfirst($k);
+        }
+    }
+}
+
+function displayInfo($info)
+{
+    echo '<div class="mcflurry information">';
+    echo '<img src="images/' . $info['image'] . '.jpg">';
+    echo '<h2>' . $info['flavour'] . '</h2>';
+    echo '<h4>' . $info['location'] . ' on ' . $info['date'] . '</h4>';
+    if ($info['rating'] === 'Unknown Rating') {
+        echo '<h3>NO RATING</h3>';
+    }
+    else {
+        displayStars($info['rating']);
+    }
+}

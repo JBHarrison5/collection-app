@@ -29,12 +29,25 @@ $information = $query->fetch();
 </nav>
 <main>
     <?php
+//    echo '<div class="mcflurry information">';
+//        echo '<img src="images/' . $information['image'] . '.jpg">';
+//        echo '<h2>' . $information['flavour'] . '</h2>';
+//        echo '<h4>' . $information['location'] . ' on ' . $information['date'] . '</h4>';
+//        displayStars($information['rating']);
+//        echo '<p>' . $information['review'] . '</p>';
+//    echo '</div>';
+    assignNulls($information);
     echo '<div class="mcflurry information">';
-        echo '<img src="images/' . $information['image'] . '">';
-        echo '<h2>' . $information['flavour'] . '</h2>';
-        echo '<h4>' . $information['location'] . ' on ' . $information['date'] . '</h4>';
+    echo '<img src="images/' . $information['image'] . '.jpg">';
+    echo '<h2>' . $information['flavour'] . '</h2>';
+    echo '<h4>' . $information['location'] . ' on ' . $information['date'] . '</h4>';
+    if ($information['rating'] === 'Unknown Rating') {
+        echo '<h3>NO RATING</h3>';
+    }
+    else {
         displayStars($information['rating']);
-        echo '<p>' . $information['review'] . '</p>';
+    }
+    echo '<p>' . $information['review'] . '</p>';
     echo '</div>';
     ?>
 </main>
