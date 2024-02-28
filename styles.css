@@ -13,9 +13,20 @@ nav {
 .information {
     justify-content: center;
 }
+.mcflurry.information img {
+    width: 250px;
+    height: 250px;
+}
 
+h3 {
+    color: #FFC72C;
+}
 .orderSelector {
     display: flex;
+}
+
+img {
+    border: #FFC72C solid 3px;
 }
 
 nav a {
@@ -58,6 +69,7 @@ h4 {
     font-size: 12pt;
     font-weight: normal;
     margin-top: 0;
+    margin-bottom: 5%;
 }
 
 .stars {

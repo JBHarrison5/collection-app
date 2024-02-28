@@ -1,6 +1,5 @@
 <?php
 //extracting info from database
-
 require_once 'functions.php';
 databaseSetUp();
 
@@ -13,12 +12,22 @@ if (isset($_POST['sort']) && ($_POST['sort'] === 'DATE' || $_POST['sort'] === 'R
     $query = $db->prepare("SELECT `id`, `date`, `rating`, `review`, `image`, `flavour`, `location` 
                             FROM `mcflurrys`
                             ORDER BY `" . $sorter . "`;");
-    $query->execute();
 }
 else {
     $query = $db->prepare('SELECT `id`, `date`, `rating`, `review`, `image`, `flavour`, `location` 
                             FROM `mcflurrys`;');
-    $query->execute();
+}
+
+//check if search is set then scan multiple fields in the database to have a look
+if (isset($_GET['search'])) {
+    $query = $db->prepare("SELECT `id`, `date`, `rating`, `review`, `image`, `flavour`, `location`
+                            FROM `mcflurrys`
+                            WHERE `date` LIKE CONCAT('%', :search, '%')
+                            OR `review` LIKE CONCAT('%', :search , '%')
+                            OR `flavour` LIKE CONCAT('%', :search , '%')
+                            OR `location` LIKE CONCAT('%', :search , '%')
+                            OR `country` LIKE CONCAT('%', :search , '%');");
+    $query->bindParam(':search', $_GET['search']);
 }
 $query->execute();
 $result = $query->fetchAll();
@@ -51,22 +60,37 @@ $result = $query->fetchAll();
             <input type="submit" name="sort" value="COUNTRY">
         </form>
     </div>
-    <form>
-        <input type="text" placeholder="SEARCH...">
-        <input type="submit" value="SEARCH">
+    <form action="index.php" method="GET">
+        <input type="text" id="search" name="search" placeholder="SEARCH...">
+        <input id="submit" type="submit" value="SEARCH">
     </form>
 </nav>
 <main>
     <?php
-    foreach ($result as $item) {
-        echo '<div class="mcflurry">';
+
+    //covers the case where search doesn't return anything
+    if (count($result) === 0){
+        echo "<h3>No Results Found</h3>";
+    }
+    else {
+        //can probably refactor this. Maybe make a function to assign all nulls to unknown
+        //in the functions php file
+        foreach ($result as $item) {
+            assignNulls($item);
+            echo '<div class="mcflurry">';
             echo '<a href="information.php?id=' . $item['id'] . '">';
-            echo '<img src="images/' . $item['image'] . '">';
+            echo '<img src="images/' . $item['image'] . '.jpg">';
             echo '</a>';
             echo '<h2>' . $item['flavour'] . '</h2>';
             echo '<h4>' . $item['location'] . ' on ' . $item['date'] . '</h4>';
-            displayStars($item['rating']);
-        echo '</div>';
+            if ($item['rating'] === 'Unknown Rating') {
+                echo '<h3>NO RATING</h3>';
+            }
+            else {
+                displayStars($item['rating']);
+            }
+            echo '</div>';
+        }
     }
     ?>
 
