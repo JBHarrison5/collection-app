@@ -83,14 +83,35 @@ $result = $query->fetchAll();
         echo "<h3>No Results Found</h3>";
     }
     else {
+        //can probably refactor this. Maybe make a function to assign all nulls to unknown
+        //in the functions php file
         foreach ($result as $item) {
             echo '<div class="mcflurry">';
             echo '<a href="information.php?id=' . $item['id'] . '">';
-            echo '<img src="images/' . $item['image'] . '">';
+            if ($item['image']) {
+                echo '<img src="images/' . $item['image'] . '">';
+            }
+            else {
+                echo '<img src="images/noImage.jpg">';
+            }
             echo '</a>';
+            if (!$item['flavour']) {
+                $item['flavour'] = 'Unknown';
+            }
             echo '<h2>' . $item['flavour'] . '</h2>';
+            if (!$item['date']) {
+                $item['date'] = 'unknown';
+            }
+            if (!$item['location']) {
+                $item['location'] = 'unknown';
+            }
             echo '<h4>' . $item['location'] . ' on ' . $item['date'] . '</h4>';
-            displayStars($item['rating']);
+            if (!$item['rating']) {
+                echo '<h3>NO RATING</h3>';
+            }
+            else {
+                displayStars($item['rating']);
+            }
             echo '</div>';
         }
     }
