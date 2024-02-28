@@ -6,8 +6,59 @@ nav {
     display: flex;
 }
 
+.submissionForm {
+    border: #FFC72C 4px solid;
+    padding: 10%;
+}
+.submissionForm form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.formRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+    margin: 3% 0 0 3%;
+}
+
+input {
+    text-align: center;
+}
+
+.slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: #FFC72C solid 2px;
+    width: 60%;
+}
+
+
+
+.slider.formRow {
+    gap: 0;
+}
+
+.slider.formRow p {
+    margin: 0;
+}
+h6 {
+    margin: 0;
+}
+.imageUpload {
+    width: 150%;
+    text-align: center;
+}
 .index {
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.LHSButtons {
+    display: flex;
+    gap: 2rem;
 }
 
 .information {

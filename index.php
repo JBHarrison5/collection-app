@@ -54,19 +54,22 @@ $result = $query->fetchAll();
     <h1>McFlyWithMe</h1>
 </header>
 <nav class="index">
-    <div class="orderSelector">
+    <div class="LHSButtons">
         <form action="index.php" method="POST">
             <select name="sort" id="sort" onchange="this.form.submit();">
-                <option value="" disabled selected hidden>SORT BY</option>
+                <option value="" disabled selected hidden>McSort</option>
                 <option value="date">DATE</option>
                 <option value="rating">RATING</option>
                 <option value="country">COUNTRY</option>
             </select>
         </form>
+        <form action="addEntry.php">
+            <input type="submit" value="McAdd">
+        </form>
     </div>
     <form action="index.php" method="GET">
         <input type="text" id="search" name="search" placeholder="SEARCH...">
-        <input id="submit" type="submit" value="SEARCH">
+        <input id="submit" type="submit" value="McSearch">
     </form>
 </nav>
 <main>
