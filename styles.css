@@ -152,6 +152,10 @@ h4 {
     border-radius: 50%;
 }
 
+.mcflurry.information {
+    width: fit-content;
+}
+
 footer {
     display: flex;
     justify-content: space-between;
@@ -163,7 +167,7 @@ footer {
         flex-direction: row;
         flex-wrap: wrap;
         flex-basis: 100%;
-        justify-content: space-evenly;
+        justify-content: space-evenly
     }
 
     .mcflurry {
@@ -172,9 +176,13 @@ footer {
     }
 
     .mcflurry.information {
-        margin-top: 5%;
-        width: 400px;
-        height: 500px;
+        width: 600px;
+        height: fit-content;
+    }
+
+    .mcflurry.information img{
+        height: 200px;
+        width: 200px;
     }
 
 }

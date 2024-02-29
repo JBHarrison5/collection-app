@@ -85,7 +85,7 @@ $result = $query->fetchAll();
     }
     else {
         $pageNumber = $_SESSION['pageNum'];
-        for ($i = ($pageNumber - 1) * 10; $i < $pageNumber * 10; $i++) {
+        for ($i = ($pageNumber - 1) * 8; $i < $pageNumber * 8; $i++) {
             if ($i > count($result) - 1) {
                 break;
             }
