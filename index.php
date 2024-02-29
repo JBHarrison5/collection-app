@@ -88,8 +88,9 @@ $result = $query->fetchAll();
             }
             $item = $result[$i];
             //checks images directory to see if the image is there. if it isn't it sets the array to null
-            (in_array($item['image'] . '.jpg', scandir('images'))) ?: $item['image'] = null;
-
+            if (!in_array($item['image'] . '.jpg', scandir('images'))) {
+                $item['image'] = null;
+            }
             assignNulls($item);
             echo '<div class="mcflurry">';
             echo '<a href="information.php?id=' . $item['id'] . '">';
