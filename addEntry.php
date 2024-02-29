@@ -23,7 +23,7 @@
     <div class="submissionForm">
         <form action="handleAddition.php">
             <div class="formRow">
-                <input type="text" name="date" placeholder="Date of Eating (YYYY-MM-DD)">
+                <input type="date" name="date" placeholder="Date of Eating (YYYY-MM-DD)">
                 <input type="text" name="flavour" placeholder="Flavour">
             </div>
             <div class="formRow">
@@ -34,7 +34,7 @@
                 <input class="imageUpload" type="text" name="image" placeholder="Image Upload (.jpg)">
             </div>
             <div class="slider formRow">
-                <p>How Many Stars?</p>
+                <p>HOW MANY STARS?</p>
                 <input type="range" name='rating' id='rating' value="rangeValue" min="0" max="5" step="0.5" oninput="rangeValue.innerText = this.value">
                 <p id="rangeValue">2.5</p>
             </div>
