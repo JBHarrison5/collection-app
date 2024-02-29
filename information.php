@@ -29,6 +29,9 @@ $information = $query->fetch();
 </nav>
 <main>
     <?php
+    if (!in_array($information['image'] . '.jpg', scandir('images'))) {
+        $information['image'] = null;
+    }
     assignNulls($information);
     echo '<div class="mcflurry information">';
     echo '<img src="images/' . $information['image'] . '.jpg">';
@@ -41,6 +44,9 @@ $information = $query->fetch();
         displayStars($information['rating']);
     }
     echo '<p>' . $information['review'] . '</p>';
+    echo '<form action="handleDeletion.php" method="post">';
+        echo '<button type="submit" name="delete" value="'. $_GET['id'] . '">DELETE</button>';
+    echo '</form>';
     echo '</div>';
     ?>
 </main>
