@@ -23,7 +23,7 @@
     <div class="submissionForm">
         <form action="handleAddition.php">
             <div class="formRow">
-                <input type="text" name="date" placeholder="Date of Eating">
+                <input type="text" name="date" placeholder="Date of Eating (YYYY-MM-DD)">
                 <input type="text" name="flavour" placeholder="Flavour">
             </div>
             <div class="formRow">
@@ -38,8 +38,7 @@
                 <input type="range" name='rating' id='rating' value="rangeValue" min="0" max="5" step="0.5" oninput="rangeValue.innerText = this.value">
                 <p id="rangeValue">2.5</p>
             </div>
-            <textarea class="formRow" name="review" rows="6" cols="40" placeholder="YOUR REVIEW...">
-            </textarea>
+            <textarea class="formRow" name="review" rows="6" cols="40" placeholder="YOUR REVIEW..."></textarea>
             <div class="formRow">
                 <input type="submit">
             </div>

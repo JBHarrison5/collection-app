@@ -28,7 +28,7 @@ function databaseSetUp() {
 function assignNulls(&$item)
 {
     foreach ($item as $k => $v) {
-        if (!$item[$k]) {
+        if (!$v) {
             $item[$k] = "Unknown " . ucfirst($k);
         }
     }

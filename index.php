@@ -3,6 +3,7 @@
 require_once 'functions.php';
 databaseSetUp();
 session_start();
+
 if (isset($_GET['nextPage'])) {
     $_SESSION['pageNum'] += 1;
 }
@@ -86,10 +87,13 @@ $result = $query->fetchAll();
                 break;
             }
             $item = $result[$i];
+            //checks images directory to see if the image is there. if it isn't it sets the array to null
+            (in_array($item['image'] . '.jpg', scandir('images'))) ?: $item['image'] = null;
+
             assignNulls($item);
             echo '<div class="mcflurry">';
             echo '<a href="information.php?id=' . $item['id'] . '">';
-            echo '<img src="images/' . $item['image'] . '.jpg">';
+            echo '<img src="images/' . $item['image'] . '.jpg" alt="no image available";>';
             echo '</a>';
             echo '<h2>' . $item['flavour'] . '</h2>';
             echo '<h4>' . $item['location'] . ' on ' . $item['date'] . '</h4>';

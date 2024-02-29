@@ -26,6 +26,12 @@ nav {
 
 input {
     text-align: center;
+    width: 12rem;
+}
+
+h2 {
+    color: #FFC72C;
+    font-family: Helvetica, sans-serif;
 }
 
 .slider {
@@ -36,6 +42,9 @@ input {
     width: 60%;
 }
 
+textarea {
+    placeholder
+}
 
 
 .slider.formRow {
