@@ -18,22 +18,25 @@ if (isset($_POST['sort']) && ($_POST['sort'] === 'date' || $_POST['sort'] === 'r
     // concatenating the
     $query = $db->prepare("SELECT `id`, `date`, `rating`, `review`, `image`, `flavour`, `location` 
                             FROM `mcflurrys`
+                            WHERE `deleteStatus` IS null
                             ORDER BY `" . $sorter . "`;");
 }
 else {
     $query = $db->prepare('SELECT `id`, `date`, `rating`, `review`, `image`, `flavour`, `location` 
-                            FROM `mcflurrys`;');
+                            FROM `mcflurrys`
+                            WHERE `deleteStatus` IS null;');
 }
 
 //check if search is set then scan multiple fields in the database to have a look
 if (isset($_GET['search'])) {
     $query = $db->prepare("SELECT `id`, `date`, `rating`, `review`, `image`, `flavour`, `location`
                             FROM `mcflurrys`
-                            WHERE `date` LIKE CONCAT('%', :search, '%')
+                            WHERE `deleteStatus` IS null
+                            AND (`date` LIKE CONCAT('%', :search, '%')
                             OR `review` LIKE CONCAT('%', :search , '%')
                             OR `flavour` LIKE CONCAT('%', :search , '%')
                             OR `location` LIKE CONCAT('%', :search , '%')
-                            OR `country` LIKE CONCAT('%', :search , '%');");
+                            OR `country` LIKE CONCAT('%', :search , '%'));");
     $query->bindParam(':search', $_GET['search']);
 }
 $query->execute();
