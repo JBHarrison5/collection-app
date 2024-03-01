@@ -20,4 +20,4 @@ $query = $db->prepare('INSERT INTO `mcflurrys` (`date`, `rating`, `review`, `ima
                         VALUES (:date, :rating, :review, :image, :flavour, :location, :country);');
 $query->execute(['date'=>$date, 'rating'=>$rating, 'review'=>$review, 'image'=>$image, 'flavour'=>$flavour, 'location'=>$city, 'country'=>$country]);
 
-//header('location: thanksForSubmission.php');
+header('location: thanksForSubmission.php');
